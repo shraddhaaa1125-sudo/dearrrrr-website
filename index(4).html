@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#DCEEFB" />
+  <title>Dearrrrr 💙</title>
+
+  <!-- Rounded handwriting-style font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-top: #DCEEFB;
+      --bg-bottom: #BFDFF5;
+      --button: #7FB7E6;
+      --button-hover: #5FA3DB;
+      --navy: #2F4A64;
+      --paper: #F7FBFF;
+      --shadow: rgba(47, 74, 100, 0.15);
+      --pink: #FFC8DD;
+      --yellow: #FFE6A7;
+      --lavender: #D9C8F5;
+      --banner: #A9D3F2;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Quicksand", sans-serif;
+      color: var(--navy);
+      background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+      overflow-x: hidden;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: none;
+      position: relative;
+      padding: 28px 18px max(28px, env(safe-area-inset-bottom));
+      overflow: hidden;
+    }
+
+    .page.active {
+      display: flex;
+      flex-direction: column;
+      animation: pageIn .45s ease both;
+    }
+
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .home {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .home-card {
+      width: min(520px, 100%);
+      padding: 34px 22px 30px;
+      background: rgba(247, 251, 255, .72);
+      border-radius: 30px;
+      box-shadow: 0 14px 35px var(--shadow);
+      border: 1px solid rgba(255,255,255,.6);
+      position: relative;
+    }
+
+    .home-title {
+      font-family: "Patrick Hand", cursive;
+      font-size: clamp(2.6rem, 12vw, 5.2rem);
+      line-height: .98;
+      margin: 0 0 26px;
+      letter-spacing: .5px;
+    }
+
+    .subtle {
+      font-size: .95rem;
+      opacity: .72;
+      margin: 0 0 22px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 0;
+      background: var(--button);
+      color: white;
+      min-width: 120px;
+      min-height: 54px;
+      padding: 12px 24px;
+      border-radius: 18px;
+      font-weight: 700;
+      font-size: 1.08rem;
+      cursor: pointer;
+      box-shadow: 0 7px 16px rgba(47,74,100,.12);
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+
+    .btn:hover, .btn:focus-visible {
+      background: var(--button-hover);
+      transform: translateY(-2px);
+      outline: none;
+      box-shadow: 0 9px 18px rgba(47,74,100,.16);
+    }
+
+    .btn:active { transform: scale(.96); }
+
+    .doodle {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .d1 { top: 10px; left: 15px; color: var(--pink); font-size: 30px; }
+    .d2 { top: 18px; right: 18px; color: var(--yellow); font-size: 26px; animation-delay: .7s; }
+    .d3 { bottom: 10px; left: 22px; color: var(--lavender); font-size: 25px; animation-delay: 1.1s; }
+    .d4 { bottom: 8px; right: 22px; color: var(--pink); font-size: 27px; animation-delay: 1.8s; }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(-4deg); }
+      50% { transform: translateY(-7px) rotate(5deg); }
+    }
+
+    .back {
+      align-self: flex-start;
+      border: 0;
+      background: rgba(247,251,255,.65);
+      padding: 11px 17px;
+      min-height: 44px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 5px 15px var(--shadow);
+      z-index: 2;
+    }
+
+    .back:hover, .back:focus-visible {
+      background: var(--paper);
+      outline: none;
+    }
+
+    .comfort {
+      align-items: center;
+      text-align: center;
+    }
+
+    .comfort-content {
+      width: min(620px, 100%);
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .kitten {
+      width: min(260px, 65vw);
+      height: auto;
+      filter: drop-shadow(0 10px 15px var(--shadow));
+      animation: kittenFloat 3.5s ease-in-out infinite;
+    }
+
+    @keyframes kittenFloat {
+      0%,100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
+    }
+
+    .banner {
+      width: 100%;
+      background: var(--banner);
+      color: var(--navy);
+      border: 3px dotted white;
+      border-radius: 23px;
+      padding: 20px 18px;
+      font-family: "Patrick Hand", cursive;
+      font-size: clamp(1.45rem, 5.7vw, 2.25rem);
+      line-height: 1.1;
+      box-shadow: 0 10px 24px var(--shadow);
+    }
+
+    .chits-page { padding-bottom: 34px; }
+
+    .chits-heading {
+      text-align: center;
+      margin: 13px auto 20px;
+    }
+
+    .chits-heading h2 {
+      font-family: "Patrick Hand", cursive;
+      font-size: clamp(2rem, 8vw, 3rem);
+      margin: 0 0 3px;
+    }
+
+    .chits-heading p {
+      margin: 0;
+      opacity: .75;
+      font-size: .92rem;
+    }
+
+    .chits-grid {
+      width: min(900px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .chit {
+      min-height: 142px;
+      border: 0;
+      background: var(--paper);
+      border-radius: 17px;
+      box-shadow: 0 9px 20px var(--shadow);
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      padding: 19px 13px;
+      transition: transform .2s ease, opacity .25s ease, box-shadow .2s ease;
+      transform: rotate(var(--rot));
+      isolation: isolate;
+    }
+
+    .chit:hover, .chit:focus-visible {
+      transform: rotate(0deg) translateY(-3px);
+      box-shadow: 0 13px 24px var(--shadow);
+      outline: none;
+    }
+
+    .chit:active { transform: rotate(0deg) scale(.97); }
+
+    .chit.opened {
+      opacity: .48;
+      filter: saturate(.75);
+    }
+
+    .chit.unfolding {
+      animation: unfold .5s ease;
+    }
+
+    @keyframes unfold {
+      0% { transform: rotate(var(--rot)) scaleY(.72); }
+      45% { transform: rotate(0deg) scaleY(1.04); }
+      100% { transform: rotate(0deg) scaleY(1); }
+    }
+
+    .chit-number {
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      font-size: .75rem;
+      opacity: .55;
+      font-weight: 700;
+    }
+
+    .chit-fold {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 28px;
+      height: 28px;
+      background: #E4F2FC;
+      clip-path: polygon(0 0, 100% 0, 100% 100%);
+    }
+
+    .chit-paperline {
+      height: 2px;
+      width: 72%;
+      margin: 18px auto 8px;
+      border-radius: 10px;
+      background: #D9EAF6;
+    }
+
+    .chit-paperline:nth-of-type(2) { width: 52%; margin-top: 7px; }
+
+    .chit-doodle {
+      position: absolute;
+      font-size: 21px;
+      opacity: .9;
+    }
+
+    .heart { color: var(--pink); }
+    .star { color: var(--yellow); }
+    .sparkle { color: var(--lavender); }
+
+    .chit-doodle.a { left: 9px; bottom: 8px; }
+    .chit-doodle.b { right: 9px; bottom: 9px; }
+    .chit-doodle.c { right: 9px; top: 34px; font-size: 17px; }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(47,74,100,.18);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal.show {
+      display: flex;
+      animation: fadeIn .2s ease both;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .message-card {
+      width: min(650px, 100%);
+      max-height: min(82vh, 720px);
+      overflow-y: auto;
+      background: var(--paper);
+      border-radius: 27px;
+      padding: 26px 21px 24px;
+      box-shadow: 0 20px 45px rgba(47,74,100,.22);
+      position: relative;
+      animation: cardIn .35s cubic-bezier(.2,.8,.2,1) both;
+      border: 2px solid rgba(169,211,242,.6);
+    }
+
+    @keyframes cardIn {
+      from { transform: translateY(25px) scale(.94) rotate(-1deg); opacity: 0; }
+      to { transform: translateY(0) scale(1) rotate(0); opacity: 1; }
+    }
+
+    .close {
+      position: sticky;
+      top: 0;
+      float: right;
+      border: 0;
+      width: 43px;
+      height: 43px;
+      border-radius: 50%;
+      background: var(--button);
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      z-index: 2;
+    }
+
+    .close:hover, .close:focus-visible { background: var(--button-hover); outline: none; }
+
+    .message-label {
+      font-size: .82rem;
+      opacity: .6;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .message-text {
+      clear: both;
+      font-family: "Patrick Hand", cursive;
+      font-size: clamp(1.35rem, 5.5vw, 2rem);
+      line-height: 1.3;
+      margin: 14px 8px 5px 0;
+    }
+
+    .tiny-hearts {
+      text-align: center;
+      color: var(--pink);
+      letter-spacing: 8px;
+      font-size: 20px;
+      margin-top: 13px;
+    }
+
+    @media (min-width: 620px) {
+      .chits-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 17px; }
+      .chit { min-height: 155px; }
+    }
+
+    @media (min-width: 900px) {
+      .chits-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .chit { min-height: 175px; }
+    }
+
+    @media (max-width: 380px) {
+      .page { padding-left: 12px; padding-right: 12px; }
+      .chit { min-height: 132px; }
+      .chits-grid { gap: 10px; }
+      .home-card { padding-left: 15px; padding-right: 15px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PAGE 1 -->
+  <main id="homePage" class="page home active" aria-labelledby="homeTitle">
+    <section class="home-card">
+      <span class="doodle d1" aria-hidden="true">♥</span>
+      <span class="doodle d2" aria-hidden="true">★</span>
+      <span class="doodle d3" aria-hidden="true">✦</span>
+      <span class="doodle d4" aria-hidden="true">♥</span>
+
+      <h1 id="homeTitle" class="home-title">Aappppp theekkk haiiii?</h1>
+      <p class="subtle">sachhhh sachhhh bataooo 👀</p>
+
+      <div class="buttons">
+        <button class="btn" id="yesBtn" type="button">Hnji</button>
+        <button class="btn" id="noBtn" type="button">Nah</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- PAGE 1B / HNJI -->
+  <main id="comfortPage" class="page comfort" aria-label="Comfort page">
+    <button class="back" type="button" data-back>← Back</button>
+
+    <section class="comfort-content">
+      <!-- Inline SVG kitten: no external image needed -->
+      <svg class="kitten" viewBox="0 0 300 260" role="img" aria-label="Cute kitten">
+        <ellipse cx="150" cy="225" rx="88" ry="14" fill="#A9D3F2" opacity=".55"/>
+        <path d="M91 80 L77 31 L118 58 Q150 43 182 58 L223 31 L209 81
+                 Q225 105 219 145 Q213 205 150 207 Q87 205 81 145 Q75 105 91 80Z"
+              fill="#F7FBFF" stroke="#2F4A64" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M85 63 L81 39 L106 57Z" fill="#FFC8DD" stroke="#2F4A64" stroke-width="4"/>
+        <path d="M215 63 L219 39 L194 57Z" fill="#FFC8DD" stroke="#2F4A64" stroke-width="4"/>
+        <ellipse cx="121" cy="112" rx="9" ry="12" fill="#2F4A64"/>
+        <ellipse cx="179" cy="112" rx="9" ry="12" fill="#2F4A64"/>
+        <circle cx="124" cy="108" r="2.7" fill="white"/>
+        <circle cx="182" cy="108" r="2.7" fill="white"/>
+        <path d="M143 130 Q150 136 157 130" fill="none" stroke="#2F4A64" stroke-width="4" stroke-linecap="round"/>
+        <path d="M150 136 Q142 149 130 145 M150 136 Q158 149 170 145" fill="none" stroke="#2F4A64" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="150" cy="130" r="5" fill="#FFC8DD"/>
+        <path d="M111 135 L73 128 M111 145 L69 147 M189 135 L227 128 M189 145 L231 147"
+              stroke="#2F4A64" stroke-width="3" stroke-linecap="round"/>
+        <path d="M100 185 Q86 207 70 197 M200 185 Q214 207 230 197"
+              fill="none" stroke="#2F4A64" stroke-width="5" stroke-linecap="round"/>
+        <path d="M135 185 Q150 175 165 185" fill="none" stroke="#D9C8F5" stroke-width="9" stroke-linecap="round"/>
+      </svg>
+
+      <div class="banner">
+        pakkkkkkkkaaaaaaaaaaa dearrrrr?<br>
+        Aapppp theekkkk haiiiii?
+      </div>
+
+      <button class="btn" type="button" data-back>← Back to the question</button>
+    </section>
+  </main>
+
+  <!-- PAGE 2 -->
+  <main id="chitsPage" class="page chits-page" aria-label="Chits page">
+    <button class="back" type="button" data-back>← Back</button>
+
+    <header class="chits-heading">
+      <h2>Open a chit, dearrrrr 💙</h2>
+      <p>ekkk ekkk karkeee kholiyegaaaaa...</p>
+    </header>
+
+    <section id="chitsGrid" class="chits-grid" aria-label="10 message chits"></section>
+  </main>
+
+  <!-- MESSAGE POPUP -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="messageLabel">
+    <article class="message-card">
+      <button id="closeModal" class="close" type="button" aria-label="Close message">×</button>
+      <div id="messageLabel" class="message-label"></div>
+      <div id="messageText" class="message-text"></div>
+      <div class="tiny-hearts" aria-hidden="true">♥ ✦ ♥</div>
+    </article>
+  </div>
+
+  <script>
+    /* =========================
+       EASY SETTINGS
+       Change only this if you want a different topic/name for notifications.
+       ========================= */
+    const TOPIC_NAME = "Dearrrrr website";
+
+    /* ntfy.sh notification endpoint — change TOPIC_NAME to your ntfy topic. */
+    const NOTIFY_ENDPOINT = `https://ntfy.sh/${encodeURIComponent(TOPIC_NAME)}`;
+
+    const messages = [
+      `Kyaaaaaaa huaaaa dearrrrr? Kisiii nee kuchhh bolaaa? Aappp hee boltiiii haiii naa dearrrr seriouslyyy mtt loo cheezeinn abb aapp seriouslyy lengiii tohhh kaisee chalegaa dearrrrr`,
+      `Dearrrrr maiiii yahiiii hunnn I justtt wantttt u to texttt meee soo thattt maiiii rahunnn aapkeee paasss aurrr aapkooo naa handlee krnaaa padeee dearrrr akeleee maiiii hunnn dearrrrr`,
+      `Aappp rooo rhiiii haiiii dearrrr? Aiseeee nahiiii karteee dearrrrr itneee preciousss tearss thodiiii bahaateee haiiii, kyaaaaaaaaaaaaaa huaaaaaaaaaaa dearrrrr? Stress hoo rhaaa haiiii? Wordsss ghum rheee haiiii? Dearrrrr, inn wordsss kiiii wajaahhh seee apnaa moodd kyuuuuu spoil krnaaa.. texttt krrr dijiyeeeeeee naa dearrrrr`,
+      `Babyyyyy kyaaaaaaaaaaaaa huaaaaaaaaaa? Ikkkkkkk aappp humeshaaa akleee handlee krtiiii haiiii andddd ikkkkkkkkk u r doneee doing thattt tohhh plssssssss textttt krooo naaa`,
+      `Dearrrrrrr ikkkkkkkkkkk aappp thakiiii huiiii haiiii anddd justtt needd someoneee to hearrr urrr thoughtsss outttt andd justtt bee thereee in silencee trustttt meee I wanttt too bee thereee`,
+      `Babyyyyyy aappp firrr akeleee sbb handleee krrr rhiiii haiiii jbb kiiii I'm thereee firrr bhiiii sbb akeleee akelee handlee krnaa nottt rightttt babyyyy itnaaa independentttt honaa achaaa nhiii haiii dearrrr`,
+      `Dearrrrrr ekkk baarrr relyyy krrr keee dekhhh lijiyeeee byyy justtt textingg thatttt is all I askkkk maiiii hunnn naaa dearrrrr to hearrr urrr thoughtsss aurrr unn thoughtsss koo vanishhh krrr keee hassiii meiii bhiiii tohhh convert krnaa haiii kariyeeeee naaa textttt`,
+      `Babyyyyy aappp tohhh humeshaaa kehtiiii haiii mujhee too reachhhh ikkkkkkk kaafiii differenceee haiiii butttt ekkk baarrr ifff u coulddd justtt trusttt meee withh thisss anddd textttt meee taakiiii I alsooo showww uppp`,
+      `Dearrrrrrrrrr minddd diverttt krnaaa haiiii aapkooo? Robloxx khelnaa haiiii? Yaa thoughtsss venttt krnee haiiii? I'm thereee babyyyyy maiii khelungiiii bhiiii sunungiiii bhiiii sbbb karungiiiii  justttt textttt meee myyyy loveeeeeeeee`,
+      `Jaaneeeemannnnnn thisss isss theee lastttt chittt abb tkkk aapneee reachhh kraa haiiii tohhh kuchhh tohhhh differenceee dikhaa hogaaa aapkooo tohhh kyaaaaaa aapp abb binaa chittt keee mujheee humeshaa texttt karengiiii🥺🥺`
+    ];
+
+    const pages = {
+      home: document.getElementById("homePage"),
+      comfort: document.getElementById("comfortPage"),
+      chits: document.getElementById("chitsPage")
+    };
+
+    const modal = document.getElementById("modal");
+    const messageText = document.getElementById("messageText");
+    const messageLabel = document.getElementById("messageLabel");
+    const closeModal = document.getElementById("closeModal");
+    const chitsGrid = document.getElementById("chitsGrid");
+
+    let currentPage = "home";
+    let lastFocused = null;
+
+    /* Notification function requested.
+       It is deliberately non-blocking and cannot break the website if it fails. */
+    function notify(message) {
+      try {
+        fetch(NOTIFY_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain;charset=UTF-8",
+            "Title": TOPIC_NAME
+          },
+          body: message,
+          keepalive: true
+        }).catch(() => {});
+      } catch (_) {}
+    }
+
+    function showPage(name) {
+      Object.values(pages).forEach(page => page.classList.remove("active"));
+      pages[name].classList.add("active");
+      currentPage = name;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function goBack() {
+      if (currentPage === "home") return;
+      showPage("home");
+    }
+
+    document.querySelectorAll("[data-back]").forEach(btn => {
+      btn.addEventListener("click", goBack);
+    });
+
+    document.getElementById("yesBtn").addEventListener("click", () => {
+      notify("She clicked Hnji");
+      showPage("comfort");
+    });
+
+    document.getElementById("noBtn").addEventListener("click", () => {
+      notify("She clicked Nah");
+      showPage("chits");
+    });
+
+    function doodleSet(index) {
+      const sets = [
+        ["♥", "★", "✦"],
+        ["★", "♥", "✧"],
+        ["✦", "♥", "✿"],
+        ["♥", "✧", "★"],
+        ["✿", "♥", "✦"]
+      ];
+      return sets[index % sets.length];
+    }
+
+    function buildChits() {
+      messages.forEach((_, index) => {
+        const chit = document.createElement("button");
+        chit.type = "button";
+        chit.className = "chit";
+        chit.style.setProperty("--rot", `${[-2.1, 1.5, -1.2, 2.2, -1.7, 1.1, -2.4, 1.8, -1.3, 2.1][index]}deg`);
+        chit.setAttribute("aria-label", `Open chit ${index + 1}`);
+
+        const [one, two, three] = doodleSet(index);
+        chit.innerHTML = `
+          <span class="chit-number">#${index + 1}</span>
+          <span class="chit-fold" aria-hidden="true"></span>
+          <span class="chit-paperline" aria-hidden="true"></span>
+          <span class="chit-paperline" aria-hidden="true"></span>
+          <span class="chit-doodle a heart" aria-hidden="true">${one}</span>
+          <span class="chit-doodle b star" aria-hidden="true">${two}</span>
+          <span class="chit-doodle c sparkle" aria-hidden="true">${three}</span>
+        `;
+
+        chit.addEventListener("click", () => openChit(chit, index));
+        chitsGrid.appendChild(chit);
+      });
+    }
+
+    function openChit(chit, index) {
+      lastFocused = chit;
+      chit.classList.add("unfolding", "opened");
+      notify(`She opened chit #${index + 1}`);
+
+      window.setTimeout(() => {
+        messageLabel.textContent = `Chit #${index + 1}`;
+        messageText.textContent = messages[index];
+        modal.classList.add("show");
+        document.body.style.overflow = "hidden";
+        closeModal.focus();
+      }, 280);
+    }
+
+    function closeMessage() {
+      modal.classList.remove("show");
+      document.body.style.overflow = "";
+      if (lastFocused) lastFocused.focus();
+    }
+
+    closeModal.addEventListener("click", closeMessage);
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeMessage();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("show")) {
+        closeMessage();
+      }
+    });
+
+    buildChits();
+
+    /* Required first-load notification. */
+    notify("She opened the site");
+  </script>
+</body>
+</html>
